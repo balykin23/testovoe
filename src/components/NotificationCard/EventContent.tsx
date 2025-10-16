@@ -5,16 +5,11 @@ import { LikePreview } from './LikePreview';
 import { SubscriptionInfo } from './SubscriptionInfo';
 import styles from './NotificationCard.module.css';
 
-// Интерфейс пропсов для содержимого события
 interface IEventContentProps {
   event: TSocialEvent;
   onUserClick: (e: React.MouseEvent) => void;
 }
 
-/**
- * Компонент для отображения содержимого уведомления
- * Показывает текст события, контекст, превью и специфичную информацию
- */
 export const EventContent: React.FC<IEventContentProps> = ({
   event,
   onUserClick,

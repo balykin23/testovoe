@@ -1,8 +1,3 @@
-/**
- * Утилита для объединения CSS классов
- * Аналог библиотеки classnames, но без зависимостей
- */
-
 type ClassValue = string | number | boolean | undefined | null;
 
 export const cn = (...classes: ClassValue[]): string => {
@@ -13,6 +8,5 @@ export const cn = (...classes: ClassValue[]): string => {
     .join(' ');
 };
 
-// Экспорт как classNames для более понятного API
 export const classNames = cn;
 

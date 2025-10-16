@@ -1,18 +1,8 @@
-/**
- * Утилиты для форматирования данных
- */
-
-/**
- * Форматирует ISO дату в относительное время (например, "5 мин назад")
- * @param isoDate - ISO строка с датой
- * @returns Форматированная строка времени
- */
 export const formatTimeAgo = (isoDate: string): string => {
   const now = new Date();
   const eventDate = new Date(isoDate);
   const diffInSeconds = Math.floor((now.getTime() - eventDate.getTime()) / 1000);
 
-  // Константы для времени в секундах
   const MINUTE = 60;
   const HOUR = 3600;
   const DAY = 86400;

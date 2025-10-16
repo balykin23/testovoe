@@ -6,29 +6,18 @@ import styles from './Avatar.module.css';
 export type TAvatarSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export interface IAvatarProps {
-  /** URL изображения */
   src: string;
-  /** Alt текст */
   alt: string;
-  /** Размер аватара */
   size?: TAvatarSize;
-  /** Показывать индикатор онлайн */
   online?: boolean;
-  /** Показывать бейдж верификации */
   verified?: boolean;
-  /** URL иконки верификации */
   verifiedIcon?: string;
-  /** Обработчик клика */
   onClick?: () => void;
-  /** Дополнительные CSS классы */
   className?: string;
-  /** Является ли кликабельным */
   clickable?: boolean;
-  /** Дополнительные inline стили */
   style?: React.CSSProperties;
 }
 
-// Маппинг размеров на пиксели
 const SIZE_MAP: Record<TAvatarSize, number> = {
   sm: 24,
   md: 32,
@@ -36,10 +25,6 @@ const SIZE_MAP: Record<TAvatarSize, number> = {
   xl: 48,
 };
 
-/**
- * Универсальный компонент аватара пользователя
- * Поддерживает индикаторы онлайн статуса и верификации
- */
 export const Avatar = React.forwardRef<HTMLDivElement, IAvatarProps>(
   (
     {
@@ -59,19 +44,17 @@ export const Avatar = React.forwardRef<HTMLDivElement, IAvatarProps>(
     const pixelSize = SIZE_MAP[size];
     const isInteractive = clickable || !!onClick;
 
-    // Обработчик клика с остановкой всплытия
     const handleClick = (e: React.MouseEvent) => {
       if (!isInteractive) return;
-      e.stopPropagation(); // Предотвращаем всплытие к родительским элементам
+      e.stopPropagation();
       onClick?.();
     };
 
-    // Обработчик клавиатуры для accessibility
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (!isInteractive) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        e.stopPropagation(); // Предотвращаем всплытие к родительским элементам
+        e.stopPropagation();
         onClick?.();
       }
     };

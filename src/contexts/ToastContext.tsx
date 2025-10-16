@@ -6,7 +6,6 @@ import { generateId } from '@/utils';
 import { DURATIONS } from '@/constants';
 import styles from '@/components/common/Toast/Toast.module.css';
 
-// Интерфейс для toast
 interface IToastItem {
   id: string;
   message: string;
@@ -14,7 +13,6 @@ interface IToastItem {
   duration?: number;
 }
 
-// Интерфейс контекста
 interface IToastContextType {
   showToast: (message: string, type?: TToastType, duration?: number) => void;
   showSuccess: (message: string, duration?: number) => void;
@@ -25,11 +23,9 @@ interface IToastContextType {
 
 const ToastContext = createContext<IToastContextType | undefined>(undefined);
 
-// Провайдер для toast-уведомлений
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<IToastItem[]>([]);
 
-  // Основная функция для показа toast
   const showToast = useCallback((message: string, type: TToastType = 'info', duration = DURATIONS.TOAST_DEFAULT) => {
     const id = generateId('toast');
     const newToast: IToastItem = { id, message, type, duration };
@@ -37,7 +33,6 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setToasts(prev => [...prev, newToast]);
   }, []);
 
-  // Удобные хелперы для разных типов
   const showSuccess = useCallback((message: string, duration?: number) => {
     showToast(message, 'success', duration);
   }, [showToast]);
@@ -54,7 +49,6 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     showToast(message, 'warning', duration);
   }, [showToast]);
 
-  // Закрытие toast
   const handleCloseToast = useCallback((id: string) => {
     setToasts(prev => prev.filter(toast => toast.id !== id));
   }, []);
@@ -87,7 +81,6 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   );
 };
 
-// Хук для использования toast в компонентах
 export const useToast = (): IToastContextType => {
   const context = useContext(ToastContext);
 

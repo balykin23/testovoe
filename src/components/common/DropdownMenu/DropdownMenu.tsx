@@ -17,7 +17,6 @@ interface IDropdownMenuProps {
   align?: 'left' | 'right';
 }
 
-// Компонент выпадающего меню
 export const DropdownMenu: React.FC<IDropdownMenuProps> = ({
   trigger,
   items,
@@ -27,20 +26,17 @@ export const DropdownMenu: React.FC<IDropdownMenuProps> = ({
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
 
-  // Переключение меню
   const handleToggle = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Предотвращаем всплытие к карточке
+    e.stopPropagation();
     setIsOpen(prev => !prev);
   };
 
-  // Обработчик клика на пункт меню
   const handleItemClick = (item: IDropdownMenuItem) => (e: React.MouseEvent) => {
-    e.stopPropagation(); // Предотвращаем всплытие
+    e.stopPropagation();
     item.onClick();
     setIsOpen(false);
   };
 
-  // Обработчик клавиатуры для trigger
   const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -52,7 +48,6 @@ export const DropdownMenu: React.FC<IDropdownMenuProps> = ({
     }
   };
 
-  // Обработчик клавиатуры для пунктов меню
   const handleItemKeyDown = (item: IDropdownMenuItem) => (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -65,7 +60,6 @@ export const DropdownMenu: React.FC<IDropdownMenuProps> = ({
     }
   };
 
-  // Закрытие меню при клике вне его области
   useEffect(() => {
     if (!isOpen) return;
 
@@ -84,7 +78,6 @@ export const DropdownMenu: React.FC<IDropdownMenuProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
-  // Формируем класс для выравнивания
   const menuClassName = cn(
     styles.menu,
     styles[align],

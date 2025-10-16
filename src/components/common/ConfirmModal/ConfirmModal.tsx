@@ -21,16 +21,13 @@ export const ConfirmModal: React.FC<TConfirmModalProps> = ({
   onCancel,
   onConfirm,
 }) => {
-  // Состояние для хранения DOM-элемента, в который будет рендериться портал
   const [mounted, setMounted] = useState(false);
 
-  // Устанавливаем mounted в true после монтирования компонента (только на клиенте)
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
 
-  // Блокируем скролл страницы при открытой модалке
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -42,7 +39,6 @@ export const ConfirmModal: React.FC<TConfirmModalProps> = ({
     };
   }, [isOpen]);
 
-  // Обработка нажатия Escape для закрытия
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -53,17 +49,14 @@ export const ConfirmModal: React.FC<TConfirmModalProps> = ({
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onCancel]);
 
-  // Не рендерим ничего, если модалка закрыта или компонент еще не смонтирован
   if (!isOpen || !mounted) return null;
 
-  // Обработчик клика по overlay (закрытие при клике вне модалки)
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onCancel();
     }
   };
 
-  // Обработчик нажатия Enter/Space для кнопок
   const handleCancelKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -78,7 +71,6 @@ export const ConfirmModal: React.FC<TConfirmModalProps> = ({
     }
   };
 
-  // Контент модалки
   const modalContent = (
     <div
       className={styles.overlay}
@@ -145,7 +137,6 @@ export const ConfirmModal: React.FC<TConfirmModalProps> = ({
     </div>
   );
 
-  // Рендерим модалку через Portal в body
   return createPortal(modalContent, document.body);
 };
 

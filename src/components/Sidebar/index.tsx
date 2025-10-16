@@ -10,36 +10,25 @@ import { BurgerButton } from './BurgerButton';
 import { NavigationList } from './NavigationList';
 import styles from './Sidebar.module.css';
 
-// Временные данные пользователя (заменить на реальные)
 const user = {
   id: 'u_123',
-  name: '560,000,690', // или никнейм
-  avatar: '/avatars/avatar.png', // помести файл в public/avatars/
+  name: '560,000,690',
+  avatar: '/avatars/avatar.png',
   verified: true,
 };
 
-/**
- * Основной компонент сайдбара с навигацией
- * Поддерживает мобильную версию с бургер-меню
- */
 export default function Sidebar() {
-  // Состояние для управления открытием/закрытием мобильного меню
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // Состояние загрузки
   const [isLoading, setIsLoading] = useState(true);
 
-  // Эффект для имитации загрузки данных пользователя
   useEffect(() => {
-    // Имитируем загрузку данных используя константу длительности
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, DURATIONS.SKELETON_LOADING);
 
-    // Очищаем таймер при размонтировании компонента
     return () => clearTimeout(timer);
   }, []);
 
-  // Эффект для закрытия меню по нажатию Escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isMenuOpen) {
@@ -50,30 +39,25 @@ export default function Sidebar() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isMenuOpen]);
 
-  // Эффект для блокировки скролла при открытом меню
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-    // Очистка при размонтировании
     return () => {
       document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
 
-  // Обработчик открытия/закрытия меню
   const handleToggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  // Обработчик клика по оверлею (закрывает меню)
   const handleOverlayClick = () => {
     setIsMenuOpen(false);
   };
 
-  // Обработчик клика по кнопке с клавиатурной доступностью
   const handleBurgerKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -81,10 +65,8 @@ export default function Sidebar() {
     }
   };
 
-  // Формируем класс для сайдбара с учетом открытого состояния
   const sidebarClassName = cn(styles.sidebar, isMenuOpen && styles.open);
 
-  // Если данные загружаются, показываем скелетон
   if (isLoading) {
     return (
       <>

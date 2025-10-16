@@ -15,7 +15,6 @@ export interface IToastProps {
   onClose: (id: string) => void;
 }
 
-// Компонент одного toast-уведомления
 export const Toast: React.FC<IToastProps> = ({
   id,
   message,
@@ -23,7 +22,6 @@ export const Toast: React.FC<IToastProps> = ({
   duration = DURATIONS.TOAST_DEFAULT,
   onClose,
 }) => {
-  // Автоматически закрываем toast через указанное время
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose(id);
@@ -32,12 +30,10 @@ export const Toast: React.FC<IToastProps> = ({
     return () => clearTimeout(timer);
   }, [id, duration, onClose]);
 
-  // Обработчик ручного закрытия
   const handleClose = () => {
     onClose(id);
   };
 
-  // Обработчик клавиатуры для accessibility
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -45,7 +41,6 @@ export const Toast: React.FC<IToastProps> = ({
     }
   };
 
-  // Формируем класс в зависимости от типа
   const toastClassName = cn(styles.toast, styles[type]);
 
   return (

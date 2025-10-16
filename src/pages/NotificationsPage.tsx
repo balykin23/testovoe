@@ -14,7 +14,6 @@ export default function NotificationsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Эффект для загрузки данных с искусственной задержкой
   useEffect(() => {
     const timer = setTimeout(() => {
       setNotifications(mockNotifications.results);
@@ -64,7 +63,6 @@ export default function NotificationsPage() {
           ))}
         </div>
       ) : (
-        /* Передаем уведомления в NotificationTabs после загрузки */
         <NotificationTabs notifications={notifications} />
       )}
 

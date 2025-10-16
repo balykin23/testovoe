@@ -125,11 +125,6 @@
   transform: scale(0.98);
 }
 
-/*.likePreview:focus {*/
-/*  outline: 2px solid var(--focus-color);*/
-/*  outline-offset: 2px;*/
-/*}*/
-
 .avatarStack {
   display: flex;
   align-items: center;
@@ -246,8 +241,6 @@
   cursor: pointer;
   transition: var(--transition-bg), border-color 200ms ease, var(--transition-color);
   white-space: nowrap;
-
-  /* Состояние "Подписаться" */
   background-color: var(--text-primary);
   color: var(--bg-primary);
   border: 1px solid var(--text-primary);
@@ -267,7 +260,6 @@
   outline-offset: 2px;
 }
 
-/* Состояние "Подписан" */
 .followBtn.following {
   background-color: transparent;
   color: var(--text-primary);
@@ -279,7 +271,6 @@
   border-color: var(--text-muted);
 }
 
-/* Мобильная адаптивность */
 @media (max-width: 768px) {
   .card {
     padding: var(--space-3);

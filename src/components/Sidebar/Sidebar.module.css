@@ -1,20 +1,16 @@
-/* Мобильный header - видим только на ≤768px */
 .mobileHeader {
-  display: none; /* По умолчанию скрыт на десктопе */
+  display: none;
   max-height: 56px;
 }
 
-/* Обертка для UserBar в мобильном header */
 .mobileUserBar {
   display: none;
 }
 
-/* Обертка для UserBar в десктопном сайдбаре */
 .desktopUserBar {
   display: block;
 }
 
-/* Кнопка бургер-меню */
 .burgerButton {
   display: flex;
   width: 44px;
@@ -40,7 +36,6 @@
   outline-offset: 2px;
 }
 
-/* Линии бургера */
 .burgerLine {
   display: block;
   width: 24px;
@@ -51,7 +46,6 @@
   transform-origin: center;
 }
 
-/* Анимация линий в крестик при открытии */
 .burgerButton .burgerLine:nth-child(1).burgerLineOpen {
   transform: translateY(8px) rotate(45deg);
 }
@@ -64,16 +58,15 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Затемненный оверлей для закрытия меню */
 .overlay {
-  display: none; /* По умолчанию скрыт */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: var(--overlay-bg);
-  z-index: 999; /* Ниже сайдбара */
+  z-index: 999;
   animation: fadeIn 0.3s ease;
 }
 
@@ -86,7 +79,6 @@
   }
 }
 
-/* Основной сайдбар */
 .sidebar {
   display: flex;
   justify-content: flex-end;
@@ -142,9 +134,7 @@
   font-weight: 700;
 }
 
-/* Мобильная адаптивность - бургер-меню */
 @media (max-width: 768px) {
-  /* Показываем мобильный header */
   .mobileHeader {
     display: flex;
     align-items: center;
@@ -158,11 +148,10 @@
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-secondary);
     box-shadow: var(--shadow-md);
-    z-index: 1001; /* Выше всего */
+    z-index: 1001;
     transition: background-color 0.3s ease;
   }
 
-  /* Показываем UserBar в мобильном header */
   .mobileUserBar {
     display: block;
     flex: 1;
@@ -182,45 +171,39 @@
     }
   }
 
-  /* Скрываем десктопный UserBar */
   .desktopUserBar {
     display: none;
   }
 
-  /* Показываем оверлей при открытом меню */
   .overlay {
     display: block;
-    margin-top: 64px; /* Отступ для header */
+    margin-top: 64px;
   }
 
-  /* Сайдбар на мобильных устройствах */
   .sidebar {
     position: fixed;
-    top: 64px; /* Под header'ом */
+    top: 64px;
     left: 0;
     bottom: 0;
-    width: 280px; /* Фиксированная ширина для мобильной версии */
-    max-width: 85vw; /* Не более 85% ширины экрана */
-    z-index: 1000; /* Выше оверлея */
+    width: 280px;
+    max-width: 85vw;
+    z-index: 1000;
     border-right: 1px solid var(--border-secondary);
     box-shadow: var(--shadow-lg);
-    /* По умолчанию скрыт за пределами экрана */
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    overflow-y: auto; /* Скролл при необходимости */
+    overflow-y: auto;
   }
 
-  /* Открытое состояние - выдвигаем сайдбар */
   .sidebar.open {
     transform: translateX(0);
   }
 
   .content {
     max-width: 100%;
-    padding: 24px 16px 16px 16px; /* Обычные отступы, т.к. UserBar теперь в header */
+    padding: 24px 16px 16px 16px;
   }
   
-  /* Мобильная версия обертки переключателя темы */
   .themeToggleWrapper {
     padding: 16px 0 0 0;
   }
@@ -246,7 +229,6 @@
   }
 }
 
-/* размеры/позиционирование бейджа и иконки настроек */
 .userBar {
   display: flex;
   justify-content: space-between;
@@ -257,7 +239,6 @@
   }
 }
 
-/* Обертка для переключателя темы внизу */
 .themeToggleWrapper {
   margin-top: auto;
   padding: 16px 0;
@@ -269,7 +250,6 @@
 
 .avatar {
   border-radius: 50%;
-  /* Оптимизация для предотвращения мерцания */
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -290,7 +270,6 @@
   height: 20px;
   object-fit: contain;
   flex: 0 0 auto;
-  /* Оптимизация рендеринга */
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -315,28 +294,21 @@
   height: 22px;
   display: block;
   object-fit: contain;
-  filter: none; /* при необходимости можно перекрасить через CSS фильтры */
-  /* Оптимизация рендеринга */
+  filter: none;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
 
 .navIcon {
-  /*width: 20px;*/
-  /*height: 20px;*/
   display: inline-block;
-  /* Цвет иконки управляется через color (currentColor в SVG) */
   color: var(--text-secondary);
-  /* Убираем лишние оптимизации - они могут вызывать мерцание */
   flex-shrink: 0;
 }
 
-/* Изменение цвета иконки при hover - просто меняем color */
 .navLink:hover .navIcon {
   color: var(--accent-primary);
 }
 
-/* Изменение цвета иконки при активном состоянии - просто меняем color */
 .navLink.active .navIcon {
   color: var(--accent-secondary);
 }

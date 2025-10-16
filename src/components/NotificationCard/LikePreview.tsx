@@ -3,28 +3,21 @@ import { Avatar } from '@/components/ui/Avatar';
 import { ISocialUser } from '@/mocks/types';
 import styles from './NotificationCard.module.css';
 
-// Интерфейс пропсов для компонента превью лайков
 interface ILikePreviewProps {
   eventId: string;
   usersPreview: ISocialUser[];
   otherCount?: number;
 }
 
-/**
- * Компонент для отображения превью пользователей, которые поставили лайк
- * Показывает первых 3 пользователя и количество остальных
- */
 export const LikePreview: React.FC<ILikePreviewProps> = ({
   eventId,
   usersPreview,
   otherCount,
 }) => {
-  // Ранний выход, если нет пользователей для отображения
   if (!usersPreview || usersPreview.length === 0) {
     return null;
   }
 
-  // Формируем описание для aria-label
   const ariaLabel = `Посмотреть ${usersPreview.length} ${
     otherCount ? `+ ${otherCount}` : ''
   } лайков`;
@@ -43,7 +36,7 @@ export const LikePreview: React.FC<ILikePreviewProps> = ({
             alt={likeUser.name}
             size="sm"
             className={styles.stackedAvatar}
-            style={{ zIndex: 3 - index }} // Z-индекс для наложения аватаров
+            style={{ zIndex: 3 - index }}
           />
         ))}
       </div>

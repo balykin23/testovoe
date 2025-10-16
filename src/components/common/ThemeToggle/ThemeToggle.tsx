@@ -5,16 +5,13 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/utils';
 import styles from './ThemeToggle.module.css';
 
-// Компонент переключателя темы
 export const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
-  // Обработчик клика
   const handleClick = () => {
     toggleTheme();
   };
 
-  // Обработчик клавиатуры (Enter и Space)
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();

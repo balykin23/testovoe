@@ -14,7 +14,6 @@ type TNotificationTabsProps = {
   notifications: TSocialEvent[];
 };
 
-// Компонент для отображения пустого состояния
 const EmptyState = ({ id, title }: { id: string; title: string }) => {
   return (
     <section className={styles.placeholder} aria-labelledby={id}>
@@ -43,28 +42,22 @@ const EmptyState = ({ id, title }: { id: string; title: string }) => {
 export default function NotificationTabs({ notifications }: TNotificationTabsProps) {
   const [activeTab, setActiveTab] = useState<TTabType>(NOTIFICATION_TABS.ALL);
 
-  // Фильтрация событий в зависимости от активного таба
   const filteredEvents = useMemo(() => {
-    // Если выбран таб "Все", показываем все события
     if (activeTab === NOTIFICATION_TABS.ALL) {
       return notifications;
     }
 
-    // Получаем типы событий для выбранной категории
     const categoryKey = activeTab.toUpperCase() as keyof typeof EVENT_CATEGORIES;
     const eventTypes = EVENT_CATEGORIES[categoryKey] as readonly string[];
 
-    // Фильтруем события по типам
     return notifications.filter(event => (eventTypes as readonly string[]).includes(event.type));
   }, [activeTab, notifications]);
 
   const renderTabContent = () => {
-    // Если нет событий, показываем EmptyState
     if (filteredEvents.length === 0) {
       return <EmptyState id={`${activeTab}-notifications`} title={`Уведомления: ${activeTab}`} />;
     }
 
-    // Иначе показываем список событий
     return (
       <div className={styles.eventsList}>
         {filteredEvents.map(event => (

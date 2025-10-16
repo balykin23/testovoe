@@ -1,16 +1,11 @@
 import { cn } from '@/utils';
 import styles from './NotificationCard.module.css';
 
-// Интерфейс пропсов для кнопки подписки
 interface IFollowButtonProps {
   isFollowing: boolean;
   onClick: (e: React.MouseEvent) => void;
 }
 
-/**
- * Компонент кнопки подписки/отписки
- * Отображается в карточках уведомлений типа 'follow'
- */
 export const FollowButton: React.FC<IFollowButtonProps> = ({
   isFollowing,
   onClick,
