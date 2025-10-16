@@ -1,6 +1,6 @@
 'use client'
 
-import NotificationsPage from '@/page-components/NotificationsPage';
+import NotificationsPage from '@/features/NotificationsPage';
 
 export default function Page() {
   return <NotificationsPage />;

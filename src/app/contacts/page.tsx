@@ -1,4 +1,4 @@
-import ContactsPage from '@/page-components/ContactsPage';
+import ContactsPage from '@/features/ContactsPage';
 
 export default function Page() {
   return <ContactsPage />;

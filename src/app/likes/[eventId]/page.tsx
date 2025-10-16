@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import LikesPage from '@/page-components/LikesPage';
+import LikesPage from '@/features/LikesPage';
 import { mockNotifications } from '@/mocks/data';
 import { TSocialEvent } from '@/mocks/types';
 import styles from '@/styles/pages/Page.module.css';
