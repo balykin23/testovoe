@@ -20,7 +20,7 @@
   cursor: pointer;
   color: var(--text-secondary);
   border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
+  transition: color 0.3s ease, background-color 0.25s ease, transform 0.3s ease;
   font-size: 14px;
   font-weight: 400;
   white-space: nowrap;
@@ -49,6 +49,7 @@
 .tabButton.active {
   color: var(--text-primary);
   font-weight: 700;
+  transform: scale(1.02);
 }
 
 /* Собственно «подчеркивание» с заданными параметрами */
@@ -57,12 +58,26 @@
   position: absolute;
   left: 50%;
   bottom: 0;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scaleX(1);
+  transform-origin: center;
   width: 100%;                    /* длина линии */
   height: 4px;                    /* толщина линии */
   background: #5B19E7;            /* цвет линии */
   border-radius: 4px;             /* скруглённые концы */
   pointer-events: none;           /* не мешать клику/фокусу */
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Анимация появления подчеркивания активного таба */
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%) scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+  }
 }
 
 .tabContent {
@@ -73,6 +88,19 @@
 .eventsList {
   display: flex;
   flex-direction: column;
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Анимация появления контента таба */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .placeholder {
@@ -84,6 +112,7 @@
   text-align: center;
   color: var(--text-muted);
   height: 100vh;
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Контейнер для иконки пустого состояния */

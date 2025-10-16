@@ -10,7 +10,18 @@
   align-items: center;
   justify-content: center;
   z-index: var(--z-modal);
-  animation: fadeIn var(--transition-normal) ease;
+  animation: fadeInBackdrop 0.3s ease;
+}
+
+@keyframes fadeInBackdrop {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
 }
 
 /* Модальное окно */
@@ -21,8 +32,19 @@
   max-width: 460px;
   width: 90%;
   box-shadow: var(--shadow-xl);
-  animation: slideUp var(--transition-normal) ease;
+  animation: modalAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 /* Кнопка закрытия (крестик) */
@@ -41,12 +63,13 @@
   border-radius: var(--radius-circle);
   color: var(--text-muted);
   cursor: pointer;
-  transition: var(--transition-bg), var(--transition-color);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .closeBtn:hover {
   background-color: var(--hover-bg);
   color: var(--text-primary);
+  transform: rotate(90deg);
 }
 
 .closeBtn:focus-visible {
@@ -56,7 +79,7 @@
 
 .closeBtn:active {
   background-color: var(--hover-bg);
-  transform: scale(0.95);
+  transform: scale(0.9) rotate(90deg);
 }
 
 /* Заголовок модалки */
@@ -96,13 +119,13 @@
   font-weight: var(--font-bold);
   line-height: 1;
   cursor: pointer;
-  transition: var(--transition-bg), transform 60ms ease;
+  transition: background-color 0.3s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
   border: none;
 }
 
 .cancelBtn:active,
 .confirmBtn:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
 }
 
 /* Кнопка "Отменить" */
@@ -114,6 +137,8 @@
 
 .cancelBtn:hover {
   background-color: var(--hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .cancelBtn:focus-visible {
@@ -129,6 +154,8 @@
 
 .confirmBtn:hover {
   background-color: #9987EC;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(91, 25, 231, 0.4);
 }
 
 /* Мобильная адаптивность */

@@ -38,6 +38,11 @@
   /* Оверлей */
   --overlay-bg: rgba(0, 0, 0, 0.5);
   
+  /* Скелетоны */
+  --skeleton-from: #f0f0f0;
+  --skeleton-via: #e8e8e8;
+  --skeleton-to: #e0e0e0;
+  
   /* ===== SPACING (отступы) ===== */
   --space-1: 4px;
   --space-2: 8px;
@@ -146,6 +151,11 @@
   
   /* Оверлей */
   --overlay-bg: rgba(0, 0, 0, 0.7);
+  
+  /* Скелетоны */
+  --skeleton-from: #2F3336;
+  --skeleton-via: #38444D;
+  --skeleton-to: #3E4A56;
 }
 
 /* Подключаем общие анимации */

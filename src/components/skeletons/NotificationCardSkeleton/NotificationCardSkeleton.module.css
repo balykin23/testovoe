@@ -6,6 +6,16 @@
   background: var(--bg-primary);
   border-radius: 0.75rem;
   transition: background 200ms ease;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .cardContent {
@@ -25,12 +35,14 @@
   border-radius: 50%;
   background: linear-gradient(
     90deg,
-    #f0f0f0 0%,
-    #e0e0e0 50%,
-    #f0f0f0 100%
+    var(--skeleton-from) 0%,
+    var(--skeleton-via) 20%,
+    var(--skeleton-to) 50%,
+    var(--skeleton-via) 80%,
+    var(--skeleton-from) 100%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.5s ease-in-out infinite;
+  animation: shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes shimmer {
@@ -63,12 +75,15 @@
   border-radius: 4px;
   background: linear-gradient(
     90deg,
-    #f0f0f0 0%,
-    #e0e0e0 50%,
-    #f0f0f0 100%
+    var(--skeleton-from) 0%,
+    var(--skeleton-via) 20%,
+    var(--skeleton-to) 50%,
+    var(--skeleton-via) 80%,
+    var(--skeleton-from) 100%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.5s ease-in-out infinite;
+  animation: shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0.1s;
 }
 
 .textLineSmall {
@@ -77,12 +92,15 @@
   border-radius: 4px;
   background: linear-gradient(
     90deg,
-    #f0f0f0 0%,
-    #e0e0e0 50%,
-    #f0f0f0 100%
+    var(--skeleton-from) 0%,
+    var(--skeleton-via) 20%,
+    var(--skeleton-to) 50%,
+    var(--skeleton-via) 80%,
+    var(--skeleton-from) 100%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.5s ease-in-out infinite;
+  animation: shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0.2s;
 }
 
 /* Скелетон превью изображения */
@@ -93,12 +111,15 @@
   flex-shrink: 0;
   background: linear-gradient(
     90deg,
-    #f0f0f0 0%,
-    #e0e0e0 50%,
-    #f0f0f0 100%
+    var(--skeleton-from) 0%,
+    var(--skeleton-via) 20%,
+    var(--skeleton-to) 50%,
+    var(--skeleton-via) 80%,
+    var(--skeleton-from) 100%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.5s ease-in-out infinite;
+  animation: shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0.15s;
 }
 
 /* Скелетон даты */
@@ -114,12 +135,15 @@
   border-radius: 4px;
   background: linear-gradient(
     90deg,
-    #f0f0f0 0%,
-    #e0e0e0 50%,
-    #f0f0f0 100%
+    var(--skeleton-from) 0%,
+    var(--skeleton-via) 20%,
+    var(--skeleton-to) 50%,
+    var(--skeleton-via) 80%,
+    var(--skeleton-from) 100%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.5s ease-in-out infinite;
+  animation: shimmer 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0.25s;
 }
 
 /* Адаптивность для мобильных */

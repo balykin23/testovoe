@@ -4,8 +4,20 @@
   flex-direction: column;
   padding: var(--space-4);
   border-bottom: 1px solid var(--border-primary);
-  transition: var(--transition-bg);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  animation: fadeInSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cardContent{
@@ -17,10 +29,12 @@
 .cardDate{
   display: flex;
   margin-left: calc(var(--size-avatar-lg) + var(--space-4));
+  transition: color 0.2s ease;
 }
 
 .card:hover {
   background-color: var(--bg-tertiary);
+  transform: translateX(4px);
 }
 
 .card:last-child {
@@ -114,15 +128,17 @@
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: background-color 0.25s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
 }
 
 .likePreview:hover {
   background-color: var(--bg-tertiary);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .likePreview:active {
-  transform: scale(0.98);
+  transform: scale(0.97) translateX(4px);
 }
 
 .avatarStack {
@@ -135,10 +151,15 @@
   border: 2px solid var(--bg-primary);
   margin-left: -8px;
   object-fit: cover;
+  transition: transform 0.2s ease, z-index 0s 0.2s;
 }
 
 .stackedAvatar:first-child {
   margin-left: 0;
+}
+
+.likePreview:hover .stackedAvatar {
+  transform: translateX(4px);
 }
 
 .otherCount {
@@ -163,6 +184,12 @@
   font-size: 12px;
   font-weight: 600;
   color: var(--text-primary);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card:hover .badge {
+  transform: scale(1.05);
+  background-color: var(--bg-secondary, #e5e7eb);
 }
 
 .amount {
@@ -184,6 +211,12 @@
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover .collectionBadge {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(91, 25, 231, 0.3);
 }
 
 /* Превью изображения */
@@ -191,6 +224,8 @@
   flex-shrink: 0;
   width: 48px;
   height: 48px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .previewImage {
@@ -198,6 +233,12 @@
   object-fit: cover;
   width: 48px;
   height: 48px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.card:hover .previewImage {
+  transform: scale(1.1);
+  filter: brightness(1.05);
 }
 
 .editBtn {
@@ -208,12 +249,17 @@
   border-radius: var(--radius-md);
   cursor: pointer;
   color: var(--text-muted);
-  transition: var(--transition-bg), var(--transition-color);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
 }
 
 .editBtn:hover {
   background-color: var(--bg-tertiary);
   color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.editBtn:active {
+  transform: scale(0.95);
 }
 
 .editBtn:focus-visible {
@@ -239,20 +285,41 @@
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
   cursor: pointer;
-  transition: var(--transition-bg), border-color 200ms ease, var(--transition-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   background-color: var(--text-primary);
   color: var(--bg-primary);
   border: 1px solid var(--text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.followBtn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
 }
 
 .followBtn:hover {
   background-color: var(--text-secondary);
   border-color: var(--text-secondary);
+  transform: translateY(-2px);
 }
 
 .followBtn:active {
-  transform: scale(0.98);
+  transform: scale(0.98) translateY(0);
+}
+
+.followBtn:active::before {
+  width: 200px;
+  height: 200px;
 }
 
 .followBtn:focus-visible {

@@ -5,7 +5,8 @@ import { NotificationTabs } from '@/components/NotificationTabs';
 import { ConfirmModal } from '@/components/common';
 import { NotificationCardSkeleton } from '@/components/skeletons';
 import styles from '@/styles/pages/Page.module.css';
-import { useNotifications } from '@/hooks/useNotifications';
+import { useNotifications, useDeleteAllNotifications } from '@/hooks/useNotifications';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function NotificationsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +19,9 @@ export default function NotificationsPage() {
     isFetchingNextPage,
     isLoading,
   } = useNotifications();
+
+  const deleteAllMutation = useDeleteAllNotifications();
+  const { showSuccess, showError } = useToast();
 
   const allNotifications = data?.pages.flatMap(page => page.results) ?? [];
 
@@ -47,7 +51,16 @@ export default function NotificationsPage() {
   };
 
   const handleConfirmDelete = () => {
-    setIsModalOpen(false);
+    deleteAllMutation.mutate(undefined, {
+      onSuccess: () => {
+        showSuccess('Все уведомления успешно удалены');
+        setIsModalOpen(false);
+      },
+      onError: () => {
+        showError('Не удалось удалить уведомления');
+        setIsModalOpen(false);
+      },
+    });
   };
 
   return (

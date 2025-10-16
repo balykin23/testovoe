@@ -11,15 +11,17 @@
 .clickable {
   cursor: pointer;
   border-radius: var(--radius-circle);
-  transition: var(--transition-transform), var(--transition-opacity);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, box-shadow 0.3s ease;
 }
 
 .clickable:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .clickable:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .clickable:focus-visible {
@@ -76,6 +78,16 @@
   background-color: #00ba7c;
   border: 2px solid var(--bg-primary);
   border-radius: var(--radius-circle);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 186, 124, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(0, 186, 124, 0);
+  }
 }
 
 /* Размеры индикатора в зависимости от размера аватара */

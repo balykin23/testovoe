@@ -25,3 +25,11 @@ export const fetchNotifications = async (cursor: number = 0): Promise<INotificat
   };
 };
 
+export const deleteAllNotifications = async (): Promise<void> => {
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  // В реальном приложении здесь был бы API запрос на удаление
+  // Для мока просто имитируем задержку
+  mockNotifications.results = [];
+};
+

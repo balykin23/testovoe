@@ -58,7 +58,7 @@ export default function NotificationTabs({ notifications, isLoading = false }: T
   const renderTabContent = () => {
     if (isLoading) {
       return (
-        <div className={styles.eventsList}>
+        <div className={styles.eventsList} key={`loading-${activeTab}`}>
           {Array.from({ length: 5 }).map((_, index) => (
             <NotificationCardSkeleton key={`skeleton-${index}`} />
           ))}
@@ -67,11 +67,11 @@ export default function NotificationTabs({ notifications, isLoading = false }: T
     }
 
     if (filteredEvents.length === 0) {
-      return <EmptyState id={`${activeTab}-notifications`} title={`Уведомления: ${activeTab}`} />;
+      return <EmptyState key={`empty-${activeTab}`} id={`${activeTab}-notifications`} title={`Уведомления: ${activeTab}`} />;
     }
 
     return (
-      <div className={styles.eventsList}>
+      <div className={styles.eventsList} key={`content-${activeTab}`}>
         {filteredEvents.map(event => (
           <NotificationCard key={event.id} event={event} />
         ))}
