@@ -15,13 +15,11 @@ export const FollowButton: React.FC<IFollowButtonProps> = ({
   isFollowing,
   onClick,
 }) => {
-  // Формируем класс кнопки в зависимости от состояния
   const buttonClass = cn(
     styles.followBtn,
     isFollowing && styles.following
   );
 
-  // Текст и aria-label в зависимости от состояния
   const buttonLabel = isFollowing ? 'Отписаться' : 'Подписаться';
 
   return (

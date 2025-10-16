@@ -91,7 +91,6 @@
   display: flex;
   justify-content: flex-end;
   width: 348px;
-  height: 100vh;
   background-color: var(--bg-secondary);
   border-right: 1px solid var(--border-secondary);
   box-shadow: var(--shadow-sm);
@@ -123,11 +122,9 @@
   padding: 14px 16px;
   text-decoration: none;
   color: var(--text-secondary);
-  /* Оптимизируем transition - только для нужных свойств */
   transition: background-color 0.2s ease, color 0.2s ease;
   border-left: 3px solid transparent;
   font-size: 20px;
-  /* GPU-ускорение для плавного рендеринга */
   transform: translateZ(0);
   will-change: background-color, color;
 }

@@ -5,16 +5,6 @@
 
 type ClassValue = string | number | boolean | undefined | null;
 
-/**
- * Объединяет классы, игнорируя falsy значения
- * @param classes - Массив классов (строки, числа, boolean)
- * @returns Строка с объединенными классами
- * 
- * @example
- * cn('btn', 'btn-primary') // 'btn btn-primary'
- * cn('btn', false && 'active', 'large') // 'btn large'
- * cn('btn', isActive && 'active') // 'btn active' если isActive = true
- */
 export const cn = (...classes: ClassValue[]): string => {
   return classes
     .filter((cls): cls is string | number => {
