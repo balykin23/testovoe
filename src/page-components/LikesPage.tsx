@@ -8,15 +8,14 @@ import { UserItemSkeleton } from '@/components/skeletons';
 import styles from '@/styles/pages/Page.module.css';
 
 interface ILikesPageProps {
-  users?: ISocialUser[]; // Полный список всех пользователей, кто поставил лайк
-  postImage?: string;  // Изображение публикации, которую лайкнули
-  isLoading?: boolean; // Состояние загрузки
+  users?: ISocialUser[];
+  postImage?: string;
+  isLoading?: boolean;
 }
 
 const LikesPage: React.FC<ILikesPageProps> = ({ users = [], postImage, isLoading = false }) => {
   const router = useRouter();
 
-  // Обработчик возврата назад
   const handleGoBack = () => {
     router.back();
   };
@@ -52,7 +51,6 @@ const LikesPage: React.FC<ILikesPageProps> = ({ users = [], postImage, isLoading
 
       <div className={styles.pageContent}>
         {isLoading ? (
-          /* Отображаем скелетоны во время загрузки */
           <ul className={styles.userList}>
             {Array.from({ length: 5 }).map((_, index) => (
               <UserItemSkeleton key={index} />

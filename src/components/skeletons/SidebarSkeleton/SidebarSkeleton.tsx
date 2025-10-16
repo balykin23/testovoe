@@ -1,10 +1,6 @@
 import React from 'react';
 import styles from './SidebarSkeleton.module.css';
 
-/**
- * Компонент скелетона только для UserBar
- * Используется в мобильном header
- */
 export const UserBarSkeleton: React.FC = () => {
   return (
     <div className={styles.userBarSkeleton} aria-busy="true" aria-label="Загрузка профиля">
@@ -17,10 +13,6 @@ export const UserBarSkeleton: React.FC = () => {
   );
 };
 
-/**
- * Компонент скелетона для Sidebar
- * Отображается во время загрузки данных пользователя и навигации
- */
 export const SidebarSkeleton: React.FC = () => {
   return (
     <div className={styles.sidebar} aria-busy="true" aria-label="Загрузка навигации">

@@ -1,10 +1,6 @@
 import React from 'react';
 import styles from './NotificationCardSkeleton.module.css';
 
-/**
- * Компонент скелетона для карточки уведомления
- * Отображается во время загрузки данных
- */
 export const NotificationCardSkeleton: React.FC = () => {
   return (
     <div className={styles.card} aria-busy="true" aria-label="Загрузка уведомления">
@@ -15,10 +11,10 @@ export const NotificationCardSkeleton: React.FC = () => {
 
         <div className={styles.content}>
           <div className={styles.textSkeleton}>
-            <div className={styles.textLine} style={{ width: '70%' }} />
+            <div className={styles.textLine} />
           </div>
           <div className={styles.textSkeleton}>
-            <div className={styles.textLineSmall} style={{ width: '50%' }} />
+            <div className={styles.textLineSmall} />
           </div>
         </div>
 

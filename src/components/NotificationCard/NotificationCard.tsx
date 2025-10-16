@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { TSocialEvent } from '@/mocks/types';
 import { useToast } from '@/contexts/ToastContext';
-import { DropdownMenu, IDropdownMenuItem } from '@/components/common';
 import { Avatar } from '@/components/ui/Avatar';
 import { formatTimeAgo, cn } from '@/utils';
 import { EVENT_TYPES } from '@/constants';
@@ -69,35 +68,18 @@ export const NotificationCard: React.FC<INotificationCardProps> = ({ event }) =>
     }
   };
 
-  const handleMenuClick = (e: React.MouseEvent) => {
+  const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    showWarning(`Уведомление от ${user.name} удалено`);
   };
 
-  const menuItems: IDropdownMenuItem[] = [
-    {
-      label: isRead ? 'Отметить как непрочитанное' : 'Отметить как прочитанное',
-      icon: isRead ? '👁️' : '✓',
-      onClick: () => {
-        setIsRead((prev) => !prev);
-        showSuccess(isRead ? 'Отмечено как непрочитанное' : 'Отмечено как прочитанное');
-      },
-    },
-    {
-      label: 'Удалить уведомление',
-      icon: '🗑️',
-      variant: 'danger',
-      onClick: () => {
-        showWarning(`Уведомление от ${user.name} удалено`);
-      },
-    },
-    {
-      label: 'Пожаловаться',
-      icon: '⚠️',
-      onClick: () => {
-        showInfo('Жалоба отправлена на рассмотрение');
-      },
-    },
-  ];
+  const handleDeleteKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      showWarning(`Уведомление от ${user.name} удалено`);
+    }
+  };
 
   const handleFollowToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -132,27 +114,22 @@ export const NotificationCard: React.FC<INotificationCardProps> = ({ event }) =>
           <FollowButton isFollowing={isFollowing} onClick={handleFollowToggle} />
         )}
 
-        <DropdownMenu
-          trigger={
-            <button
-              type="button"
-              className={styles.editBtn}
-              aria-label="Открыть меню"
-              onClick={handleMenuClick}
-            >
-              <img
-                src="/icons/editIcon.svg"
-                alt=""
-                className={styles.settingsIcon}
-                width={22}
-                height={22}
-                decoding="async"
-              />
-            </button>
-          }
-          items={menuItems}
-          align="right"
-        />
+        <button
+          type="button"
+          className={styles.editBtn}
+          aria-label="Удалить уведомление"
+          onClick={handleDeleteClick}
+          onKeyDown={handleDeleteKeyDown}
+        >
+          <img
+            src="/icons/editIcon.svg"
+            alt=""
+            className={styles.settingsIcon}
+            width={22}
+            height={22}
+            decoding="async"
+          />
+        </button>
       </div>
       <div className={styles.cardDate}>
         <time className={styles.time} dateTime={created}>
