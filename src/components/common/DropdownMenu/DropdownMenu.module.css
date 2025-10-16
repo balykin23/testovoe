@@ -1,0 +1,115 @@
+/* Контейнер dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Триггер (кнопка, которая открывает меню) */
+.trigger {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Само выпадающее меню */
+.menu {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  min-width: 200px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: var(--space-2);
+  z-index: var(--z-dropdown);
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: menuAppear var(--transition-normal) ease-out forwards;
+}
+
+/* Выравнивание меню */
+.menu.left {
+  left: 0;
+}
+
+.menu.right {
+  right: 0;
+}
+
+/* Пункт меню */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  user-select: none;
+}
+
+.item:hover {
+  background: var(--hover-bg);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: -2px;
+}
+
+.item:active {
+  transform: scale(0.98);
+}
+
+/* Иконка пункта меню */
+.itemIcon {
+  font-size: var(--text-lg);
+  line-height: 1;
+  opacity: 0.7;
+}
+
+/* Текст пункта меню */
+.itemLabel {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+}
+
+/* Вариант danger для опасных действий */
+.item.danger .itemLabel {
+  color: var(--accent-error);
+}
+
+.item.danger:hover {
+  background: #fef2f2;
+}
+
+/* Темная тема */
+[data-theme="dark"] .item.danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Разделитель (если понадобится позже) */
+.divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: var(--space-2) 0;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .menu {
+    min-width: 180px;
+    font-size: var(--text-base);
+  }
+
+  .item {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .itemLabel {
+    font-size: var(--text-sm);
+  }
+}
+

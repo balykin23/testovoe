@@ -1,0 +1,142 @@
+/* Toast container (используется в ToastProvider) */
+.toastContainer {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 400px;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Отдельный toast */
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+  animation: slideIn var(--transition-slow) ease-out;
+  transition: var(--transition-opacity), var(--transition-transform);
+}
+
+/* Варианты типов toast */
+.toast.success {
+  border-left: 4px solid var(--accent-success);
+}
+
+.toast.error {
+  border-left: 4px solid var(--accent-error);
+}
+
+.toast.info {
+  border-left: 4px solid var(--accent-info);
+}
+
+.toast.warning {
+  border-left: 4px solid var(--accent-warning);
+}
+
+/* Контент toast */
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  flex: 1;
+}
+
+/* Иконка типа */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-circle);
+  font-size: var(--text-md);
+  font-weight: var(--font-bold);
+  flex-shrink: 0;
+}
+
+.success .icon {
+  background: #d1fae5;
+  color: var(--accent-success);
+}
+
+.error .icon {
+  background: #fee2e2;
+  color: var(--accent-error);
+}
+
+.info .icon {
+  background: #dbeafe;
+  color: var(--accent-info);
+}
+
+.warning .icon {
+  background: #fef3c7;
+  color: var(--accent-warning);
+}
+
+/* Сообщение */
+.message {
+  flex: 1;
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  word-wrap: break-word;
+}
+
+/* Кнопка закрытия */
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--text-md);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.closeBtn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .toastContainer {
+    left: var(--space-4);
+    right: var(--space-4);
+    max-width: none;
+  }
+
+  .toast {
+    padding: 14px;
+  }
+
+  .message {
+    font-size: var(--text-sm);
+  }
+}
+

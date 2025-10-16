@@ -1,0 +1,315 @@
+/* Карточка уведомления */
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border-primary);
+  transition: var(--transition-bg);
+  cursor: pointer;
+}
+
+.cardContent{
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.cardDate{
+  display: flex;
+  margin-left: calc(var(--size-avatar-lg) + var(--space-4));
+}
+
+.card:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.card:last-child {
+  border-bottom: none;
+}
+
+/* Контентная часть */
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* Заголовок: имя и время */
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Имя пользователя внутри текста */
+.userName {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  cursor: pointer;
+  transition: var(--transition-color), text-decoration 200ms ease;
+}
+
+/* Hover эффект для имени пользователя */
+.userName:hover {
+  color: var(--text-link);
+  text-decoration: underline;
+}
+
+.userName:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.verifiedIcon {
+  flex-shrink: 0;
+}
+
+.time {
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+  white-space: nowrap;
+}
+
+/* Текст события */
+.text {
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  margin: 0;
+  word-wrap: break-word;
+}
+
+/* Контекст упоминания */
+.context {
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+  margin: var(--space-1) 0 0;
+  font-style: italic;
+}
+
+/* Превью лайков (ссылка) */
+.likePreview {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 4px 8px;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.likePreview:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.likePreview:active {
+  transform: scale(0.98);
+}
+
+/*.likePreview:focus {*/
+/*  outline: 2px solid var(--focus-color);*/
+/*  outline-offset: 2px;*/
+/*}*/
+
+.avatarStack {
+  display: flex;
+  align-items: center;
+}
+
+.stackedAvatar {
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary);
+  margin-left: -8px;
+  object-fit: cover;
+}
+
+.stackedAvatar:first-child {
+  margin-left: 0;
+}
+
+.otherCount {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Информация о подписке */
+.subscriptionInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 4px 8px;
+  background-color: var(--bg-tertiary);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #00ba7c;
+}
+
+/* Информация о коллекции */
+.collectionInfo {
+  margin-top: 4px;
+}
+
+.collectionBadge {
+  display: inline-flex;
+  padding: 4px 8px;
+  background-color: #5b19e7;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Превью изображения */
+.imagePreview {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+}
+
+.previewImage {
+  border-radius: 8px;
+  object-fit: cover;
+  width: 48px;
+  height: 48px;
+}
+
+.editBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: var(--transition-bg), var(--transition-color);
+}
+
+.editBtn:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.editBtn:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* Состояние прочитанного уведомления */
+.card.read {
+  opacity: 0.7;
+}
+
+.card.read:hover {
+  opacity: 1;
+}
+
+/* Кнопка подписки */
+.followBtn {
+  appearance: none;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  cursor: pointer;
+  transition: var(--transition-bg), border-color 200ms ease, var(--transition-color);
+  white-space: nowrap;
+
+  /* Состояние "Подписаться" */
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--text-primary);
+}
+
+.followBtn:hover {
+  background-color: var(--text-secondary);
+  border-color: var(--text-secondary);
+}
+
+.followBtn:active {
+  transform: scale(0.98);
+}
+
+.followBtn:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* Состояние "Подписан" */
+.followBtn.following {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+}
+
+.followBtn.following:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--text-muted);
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 768px) {
+  .card {
+    padding: var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .userName {
+    font-size: var(--text-base);
+  }
+
+  .time {
+    font-size: var(--text-sm);
+  }
+
+  .text {
+    font-size: var(--text-sm);
+  }
+
+  .imagePreview {
+    width: var(--size-avatar-lg);
+    height: var(--size-avatar-lg);
+  }
+
+  .previewImage {
+    width: var(--size-avatar-lg);
+    height: var(--size-avatar-lg);
+  }
+
+  .followBtn {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+  }
+}

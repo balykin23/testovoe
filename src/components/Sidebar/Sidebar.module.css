@@ -1,0 +1,345 @@
+/* Мобильный header - видим только на ≤768px */
+.mobileHeader {
+  display: none; /* По умолчанию скрыт на десктопе */
+  max-height: 56px;
+}
+
+/* Обертка для UserBar в мобильном header */
+.mobileUserBar {
+  display: none;
+}
+
+/* Обертка для UserBar в десктопном сайдбаре */
+.desktopUserBar {
+  display: block;
+}
+
+/* Кнопка бургер-меню */
+.burgerButton {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.burgerButton:hover {
+  background-color: var(--hover-bg);
+}
+
+.burgerButton:focus {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* Линии бургера */
+.burgerLine {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-secondary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Анимация линий в крестик при открытии */
+.burgerButton .burgerLine:nth-child(1).burgerLineOpen {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burgerButton .burgerLine:nth-child(2).burgerLineOpen {
+  opacity: 0;
+}
+
+.burgerButton .burgerLine:nth-child(3).burgerLineOpen {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Затемненный оверлей для закрытия меню */
+.overlay {
+  display: none; /* По умолчанию скрыт */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-bg);
+  z-index: 999; /* Ниже сайдбара */
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Основной сайдбар */
+.sidebar {
+  display: flex;
+  justify-content: flex-end;
+  width: 348px;
+  height: 100vh;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-secondary);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 260px;
+  width: 100%;
+  padding: 10px 8px 0 0;
+  height: 100%;
+}
+
+.nav {
+  list-style: none;
+  padding-top: 24px;
+}
+
+.navItem {
+  margin-bottom: 0.5rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  /* Оптимизируем transition - только для нужных свойств */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-left: 3px solid transparent;
+  font-size: 20px;
+  /* GPU-ускорение для плавного рендеринга */
+  transform: translateZ(0);
+  will-change: background-color, color;
+}
+
+.navLink:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--accent-primary);
+}
+
+.navLink:focus {
+  outline-offset: -2px;
+}
+
+.navLink.active {
+  font-weight: 700;
+}
+
+/* Мобильная адаптивность - бургер-меню */
+@media (max-width: 768px) {
+  /* Показываем мобильный header */
+  .mobileHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    padding: 0 16px;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-secondary);
+    box-shadow: var(--shadow-md);
+    z-index: 1001; /* Выше всего */
+    transition: background-color 0.3s ease;
+  }
+
+  /* Показываем UserBar в мобильном header */
+  .mobileUserBar {
+    display: block;
+    flex: 1;
+    margin-left: 12px;
+    max-height: 40px;
+
+    .userLink{
+      .img{
+        width: 40px;
+        height: 40px;
+
+        .userName img{
+          width: 16px;
+          height: 16px;
+        }
+    }
+    }
+  }
+
+  /* Скрываем десктопный UserBar */
+  .desktopUserBar {
+    display: none;
+  }
+
+  /* Показываем оверлей при открытом меню */
+  .overlay {
+    display: block;
+    margin-top: 64px; /* Отступ для header */
+  }
+
+  /* Сайдбар на мобильных устройствах */
+  .sidebar {
+    position: fixed;
+    top: 64px; /* Под header'ом */
+    left: 0;
+    bottom: 0;
+    width: 280px; /* Фиксированная ширина для мобильной версии */
+    max-width: 85vw; /* Не более 85% ширины экрана */
+    z-index: 1000; /* Выше оверлея */
+    border-right: 1px solid var(--border-secondary);
+    box-shadow: var(--shadow-lg);
+    /* По умолчанию скрыт за пределами экрана */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto; /* Скролл при необходимости */
+  }
+
+  /* Открытое состояние - выдвигаем сайдбар */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 24px 16px 16px 16px; /* Обычные отступы, т.к. UserBar теперь в header */
+  }
+  
+  /* Мобильная версия обертки переключателя темы */
+  .themeToggleWrapper {
+    padding: 16px 0 0 0;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+  }
+
+  .navItem {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .navLink {
+    padding: 14px 16px;
+    border-left: 3px solid transparent;
+  }
+
+  .navLink.active {
+    border-left-color: var(--accent-secondary);
+  }
+}
+
+/* размеры/позиционирование бейджа и иконки настроек */
+.userBar {
+  display: flex;
+  justify-content: space-between;
+
+  .userLink{
+    display: flex;
+    text-decoration: none;
+  }
+}
+
+/* Обертка для переключателя темы внизу */
+.themeToggleWrapper {
+  margin-top: auto;
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--border-secondary);
+}
+
+.avatar {
+  border-radius: 50%;
+  /* Оптимизация для предотвращения мерцания */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.userName {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.3;
+  margin-left: 8px;
+  color: var(--text-primary);
+}
+
+.badgeImg {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  /* Оптимизация рендеринга */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.settingsBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.settingsBtn:hover,
+.settingsBtn:focus-visible {
+  background: var(--hover-bg);
+  outline: none;
+}
+
+.settingsIcon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  object-fit: contain;
+  filter: none; /* при необходимости можно перекрасить через CSS фильтры */
+  /* Оптимизация рендеринга */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.navIcon {
+  /*width: 20px;*/
+  /*height: 20px;*/
+  display: inline-block;
+  /* Цвет иконки управляется через color (currentColor в SVG) */
+  color: var(--text-secondary);
+  /* Убираем лишние оптимизации - они могут вызывать мерцание */
+  flex-shrink: 0;
+}
+
+/* Изменение цвета иконки при hover - просто меняем color */
+.navLink:hover .navIcon {
+  color: var(--accent-primary);
+}
+
+/* Изменение цвета иконки при активном состоянии - просто меняем color */
+.navLink.active .navIcon {
+  color: var(--accent-secondary);
+}

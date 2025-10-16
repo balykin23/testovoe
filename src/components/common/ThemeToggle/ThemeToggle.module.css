@@ -1,0 +1,55 @@
+/* Кнопка переключения темы */
+.themeToggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: var(--text-primary);
+}
+
+.themeToggle:hover {
+  background-color: var(--hover-bg);
+}
+
+.themeToggle:focus {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* Общие стили для иконок */
+.icon {
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Иконка солнца - видна в светлой теме */
+.sunIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Иконка луны - скрыта в светлой теме */
+.moonIcon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.8);
+}
+
+/* В темной теме меняем видимость иконок */
+[data-theme='dark'] .sunIcon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.8);
+}
+
+[data-theme='dark'] .moonIcon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+

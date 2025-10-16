@@ -1,0 +1,137 @@
+/* ===== КОНТЕЙНЕР АВАТАРА ===== */
+.container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Кликабельный аватар */
+.clickable {
+  cursor: pointer;
+  border-radius: var(--radius-circle);
+  transition: var(--transition-transform), var(--transition-opacity);
+}
+
+.clickable:hover {
+  transform: scale(1.05);
+}
+
+.clickable:active {
+  transform: scale(0.98);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* ===== РАЗМЕРЫ ===== */
+.sm {
+  width: var(--size-avatar-sm);
+  height: var(--size-avatar-sm);
+}
+
+.md {
+  width: var(--size-avatar-md);
+  height: var(--size-avatar-md);
+}
+
+.lg {
+  width: var(--size-avatar-lg);
+  height: var(--size-avatar-lg);
+}
+
+.xl {
+  width: var(--size-avatar-xl);
+  height: var(--size-avatar-xl);
+}
+
+/* ===== ОБЕРТКА ИЗОБРАЖЕНИЯ ===== */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-circle);
+  overflow: hidden;
+}
+
+/* ===== ИЗОБРАЖЕНИЕ ===== */
+.image {
+  border-radius: var(--radius-circle);
+  object-fit: cover;
+  /* Оптимизация для предотвращения мерцания */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ===== ИНДИКАТОР ОНЛАЙН СТАТУСА ===== */
+.onlineIndicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #00ba7c;
+  border: 2px solid var(--bg-primary);
+  border-radius: var(--radius-circle);
+}
+
+/* Размеры индикатора в зависимости от размера аватара */
+.sm .onlineIndicator {
+  width: 8px;
+  height: 8px;
+  border-width: 1.5px;
+}
+
+.md .onlineIndicator {
+  width: 10px;
+  height: 10px;
+  border-width: 2px;
+}
+
+.lg .onlineIndicator {
+  width: 12px;
+  height: 12px;
+  border-width: 2px;
+}
+
+.xl .onlineIndicator {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+
+/* ===== БЕЙДЖ ВЕРИФИКАЦИИ ===== */
+.verifiedBadge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-circle);
+  padding: 1px;
+  /* Оптимизация рендеринга */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+  /* На мобильных устройствах немного уменьшаем размеры */
+  .md {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .lg {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .xl {
+    width: 44px;
+    height: 44px;
+  }
+}
+

@@ -1,0 +1,160 @@
+/* Overlay — затемненный фон */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  animation: fadeIn var(--transition-normal) ease;
+}
+
+/* Модальное окно */
+.modal {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  max-width: 460px;
+  width: 90%;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp var(--transition-normal) ease;
+  position: relative;
+}
+
+/* Кнопка закрытия (крестик) */
+.closeBtn {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-button-sm);
+  height: var(--size-button-sm);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-circle);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition-bg), var(--transition-color);
+}
+
+.closeBtn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+.closeBtn:active {
+  background-color: var(--hover-bg);
+  transform: scale(0.95);
+}
+
+/* Заголовок модалки */
+.title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-6) 0;
+  line-height: 30px;
+}
+
+/* Текст сообщения */
+.message {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin: 0 0 var(--space-8) 0;
+  line-height: var(--leading-normal);
+}
+
+/* Контейнер кнопок */
+.buttons {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-evenly;
+}
+
+/* Общие стили для кнопок */
+.cancelBtn,
+.confirmBtn {
+  max-width: 210px;
+  width: 100%;
+  max-height: var(--size-button-lg);
+  height: 100%;
+  padding: 18px 0;
+  border-radius: var(--radius-full);
+  font-size: var(--text-md);
+  font-weight: var(--font-bold);
+  line-height: 1;
+  cursor: pointer;
+  transition: var(--transition-bg), transform 60ms ease;
+  border: none;
+}
+
+.cancelBtn:active,
+.confirmBtn:active {
+  transform: scale(0.98);
+}
+
+/* Кнопка "Отменить" */
+.cancelBtn {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+}
+
+.cancelBtn:hover {
+  background-color: var(--hover-bg);
+}
+
+.cancelBtn:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* Кнопка "Удалить" */
+.confirmBtn {
+  background-color: #5B19E7;
+  color: #ffffff;
+}
+
+.confirmBtn:hover {
+  background-color: #9987EC;
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 480px) {
+  .modal {
+    padding: var(--space-5);
+    max-width: 340px;
+  }
+
+  .title {
+    font-size: var(--text-lg);
+  }
+
+  .message {
+    font-size: var(--text-base);
+  }
+
+  .buttons {
+    flex-direction: column-reverse;
+    gap: var(--space-2);
+  }
+
+  .cancelBtn,
+  .confirmBtn {
+    width: 100%;
+    padding: var(--space-3) var(--space-5);
+  }
+}
+

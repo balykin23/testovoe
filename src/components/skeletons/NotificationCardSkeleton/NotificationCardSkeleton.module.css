@@ -1,0 +1,136 @@
+/* Базовая анимация пульсации для скелетона */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Базовый стиль карточки скелетона */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: 0.75rem;
+  transition: background 200ms ease;
+}
+
+.cardContent {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+/* Скелетон аватара */
+.avatarWrapper {
+  flex-shrink: 0;
+}
+
+.avatarSkeleton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e0e0e0 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Скелетон контента */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.textSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.textLine,
+.textLineSmall {
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e0e0e0 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.textLineSmall {
+  height: 14px;
+}
+
+/* Скелетон превью изображения */
+.imageSkeleton {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e0e0e0 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Скелетон даты */
+.cardDate {
+  display: flex;
+  align-items: center;
+  padding-left: 3.25rem;
+}
+
+.timeSkeleton {
+  width: 80px;
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e0e0e0 50%,
+    #f0f0f0 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+  .card {
+    padding: 0.875rem;
+  }
+
+  .cardContent {
+    gap: 0.625rem;
+  }
+}
+
