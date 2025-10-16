@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import styles from './NotificationTabs.module.css';
 import { NotificationCard } from '../NotificationCard';
+import { NotificationCardSkeleton } from '../skeletons';
 import { TSocialEvent } from '@/mocks/types';
 import { cn } from '@/utils';
 import { NOTIFICATION_TAB_CONFIG, EVENT_CATEGORIES, NOTIFICATION_TABS } from '@/constants';
@@ -12,6 +13,7 @@ type TTabType = typeof NOTIFICATION_TABS[keyof typeof NOTIFICATION_TABS];
 
 type TNotificationTabsProps = {
   notifications: TSocialEvent[];
+  isLoading?: boolean;
 };
 
 const EmptyState = ({ id, title }: { id: string; title: string }) => {
@@ -39,7 +41,7 @@ const EmptyState = ({ id, title }: { id: string; title: string }) => {
   );
 };
 
-export default function NotificationTabs({ notifications }: TNotificationTabsProps) {
+export default function NotificationTabs({ notifications, isLoading = false }: TNotificationTabsProps) {
   const [activeTab, setActiveTab] = useState<TTabType>(NOTIFICATION_TABS.ALL);
 
   const filteredEvents = useMemo(() => {
@@ -54,6 +56,16 @@ export default function NotificationTabs({ notifications }: TNotificationTabsPro
   }, [activeTab, notifications]);
 
   const renderTabContent = () => {
+    if (isLoading) {
+      return (
+        <div className={styles.eventsList}>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <NotificationCardSkeleton key={`skeleton-${index}`} />
+          ))}
+        </div>
+      );
+    }
+
     if (filteredEvents.length === 0) {
       return <EmptyState id={`${activeTab}-notifications`} title={`Уведомления: ${activeTab}`} />;
     }

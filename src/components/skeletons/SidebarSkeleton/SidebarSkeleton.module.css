@@ -10,11 +10,9 @@
 
 /* Базовый стиль Sidebar скелетона */
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 280px;
-  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  width: 348px;
   background: var(--bg-secondary);
   border-right: 1px solid var(--border-secondary);
   z-index: 100;
@@ -23,8 +21,10 @@
 .content {
   display: flex;
   flex-direction: column;
+  max-width: 260px;
+  width: 100%;
+  padding: 10px 8px 0 0;
   height: 100%;
-  padding: 1rem;
 }
 
 /* Скелетон UserBar */

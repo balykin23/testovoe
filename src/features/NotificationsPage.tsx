@@ -70,28 +70,21 @@ export default function NotificationsPage() {
         </button>
       </header>
 
-      {isLoading ? (
-        <div className={styles.notificationsList}>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <NotificationCardSkeleton key={index} />
-          ))}
-        </div>
-      ) : (
-        <>
-          <NotificationTabs notifications={allNotifications} />
-          
-          {hasNextPage && (
-            <div ref={observerTarget} className={styles.loadingTrigger}>
-              {isFetchingNextPage && (
-                <div className={styles.notificationsList}>
-                  {Array.from({ length: 3 }).map((_, index) => (
-                    <NotificationCardSkeleton key={`loading-${index}`} />
-                  ))}
-                </div>
-              )}
+      <NotificationTabs 
+        notifications={allNotifications} 
+        isLoading={isLoading}
+      />
+      
+      {!isLoading && hasNextPage && (
+        <div ref={observerTarget} className={styles.loadingTrigger}>
+          {isFetchingNextPage && (
+            <div className={styles.notificationsList}>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <NotificationCardSkeleton key={`loading-${index}`} />
+              ))}
             </div>
           )}
-        </>
+        </div>
       )}
 
       <ConfirmModal
